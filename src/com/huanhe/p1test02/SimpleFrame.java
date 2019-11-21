@@ -11,6 +11,7 @@ public class SimpleFrame extends JFrame {
     private JTextArea textArea1;
     private JLabel inputLabel;
     private JButton cleanButton;
+    private JTextArea textArea2;
 
     public SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
@@ -85,9 +86,20 @@ public class SimpleFrame extends JFrame {
 //            textField1.setBackground(Color.red);
 //        }
 
-        new MyJTextFieldListener(textField1);
+//        new MyJTextFieldListener(textField1);
 
 
-
+        textField1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+               if (!textField1.getText().equals("") && textField1.getText().trim().isEmpty()) {
+                   textField1.setBackground(new Color(119,58,58));
+                   textArea2.setText("你输入的似乎都是空格。");
+               } else {
+                   textField1.setBackground(new Color(69,73,74));
+                   textArea2.setText("完美的输入。");
+               }
+            }
+        });
     }
 }
