@@ -98,6 +98,7 @@ public class SimpleFrame extends JFrame {
                } else {
                    textField1.setBackground(new Color(69,73,74));
                    textArea2.setText("完美的输入。");
+
                }
             }
         });
