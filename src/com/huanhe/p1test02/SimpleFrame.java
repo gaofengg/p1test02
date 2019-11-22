@@ -15,7 +15,7 @@ public class SimpleFrame extends JFrame {
     private JTextArea textArea2;
     private JProgressBar progressBar1;
 
-    public SimpleFrame() throws HeadlessException {
+    SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
         int init_width = 1024;
         int init_height = 768;
@@ -50,10 +50,13 @@ public class SimpleFrame extends JFrame {
             String inputText = textField1.getText().trim();
             if (!(textField1.getText().equals("")) && !(inputText.isEmpty())) {
                 textArea1.append(inputText + "\n");
-            } else {
-                textField1.setToolTipText("text error");
             }
+
             textField1.setText("");
+
+            if (textField1.getText().replace(" ", "").isEmpty()) {
+                textArea2.setText("等待输入 ...");
+            }
 
 //                textField1.grabFocus(); 尽可能不要用这种方法，它会将在JFrame之间传递焦点
             textField1.requestFocusInWindow();
@@ -77,11 +80,11 @@ public class SimpleFrame extends JFrame {
         });
 
         //清除按钮，一键清除textArea1中的内容，并将焦点重新定位到textField1输入框
-        cleanButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                textArea1.setText("");
-                textField1.requestFocusInWindow();
+        cleanButton.addActionListener(actionEvent -> {
+            textArea1.setText("");
+            textField1.requestFocusInWindow();
+            if (textField1.getText().replace(" ", "").isEmpty()) {
+                textArea2.setText("等待输入 ...");
             }
         });
 
@@ -100,10 +103,10 @@ public class SimpleFrame extends JFrame {
                 if (!textField1.getText().equals("") && textField1.getText().trim().isEmpty()) {
                     textField1.setBackground(new Color(119, 58, 58));
                     textArea2.setText("你输入的似乎都是空格。");
-                } else if (textField1.getText().equals("")) {
+                } else if (textField1.getText().replace(" ", "").isEmpty()) {
                     textArea2.setText("等待输入 ...");
-                } else {
                     textField1.setBackground(new Color(69, 73, 74));
+                } else {
                     textArea2.setText("正在输入 ...");
 
                 }
