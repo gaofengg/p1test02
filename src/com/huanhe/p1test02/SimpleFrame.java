@@ -1,6 +1,7 @@
 package com.huanhe.p1test02;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -12,6 +13,7 @@ public class SimpleFrame extends JFrame {
     private JLabel inputLabel;
     private JButton cleanButton;
     private JTextArea textArea2;
+    private JProgressBar progressBar1;
 
     public SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
@@ -35,6 +37,8 @@ public class SimpleFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         textArea1.setEditable(false);
         textArea1.setFocusable(false); //设置禁止该组件获取焦点
+
+        panel1.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置Jpanel与window的边框间距
 
         add(panel1);
 
@@ -88,18 +92,22 @@ public class SimpleFrame extends JFrame {
 
 //        new MyJTextFieldListener(textField1);
 
+        textArea2.setText("尚未输入任何内容。");
 
         textField1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-               if (!textField1.getText().equals("") && textField1.getText().trim().isEmpty()) {
-                   textField1.setBackground(new Color(119,58,58));
-                   textArea2.setText("你输入的似乎都是空格。");
-               } else {
-                   textField1.setBackground(new Color(69,73,74));
-                   textArea2.setText("完美的输入。");
+                if (!textField1.getText().equals("") && textField1.getText().trim().isEmpty()) {
+                    textField1.setBackground(new Color(119, 58, 58));
+                    textArea2.setText("你输入的似乎都是空格。");
+                } else if (textField1.getText().equals("")) {
+                    textArea2.setText("等待输入 ...");
+                } else {
+                    textField1.setBackground(new Color(69, 73, 74));
+                    textArea2.setText("正在输入 ...");
 
-               }
+                }
+
             }
         });
     }
