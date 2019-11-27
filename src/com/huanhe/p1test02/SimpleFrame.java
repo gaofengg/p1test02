@@ -16,11 +16,12 @@ public class SimpleFrame extends JFrame {
     private JTextArea inputStatusTextArea;
     private JPanel statusBarPanel;
     private JPanel inputControlPanel;
-    private JProgressBar progressBar1;
     private JPanel controlPanel;
     private JScrollPane inputStatusPane;
     private JScrollPane showContentPane;
     private JLabel connectStatusLabel;
+    private JLabel messageInStatusbar;
+    private JProgressBar progressBarInStatusbar;
 
     SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
