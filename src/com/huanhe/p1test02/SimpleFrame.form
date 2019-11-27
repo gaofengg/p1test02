@@ -66,12 +66,12 @@
             </constraints>
             <properties/>
           </component>
-          <component id="96b23" class="javax.swing.JLabel">
+          <component id="96b23" class="javax.swing.JLabel" binding="connectStatusLabel">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="2fe0e" class="javax.swing.JLabel">

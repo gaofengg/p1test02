@@ -20,6 +20,7 @@ public class SimpleFrame extends JFrame {
     private JPanel controlPanel;
     private JScrollPane inputStatusPane;
     private JScrollPane showContentPane;
+    private JLabel connectStatusLabel;
 
     SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
@@ -129,7 +130,7 @@ public class SimpleFrame extends JFrame {
         Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70,70));
         statusBarPanel.setBorder(redBorder);
 
-//        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/connected.png"));
+        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/unconnect16.png"));
 
         inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
