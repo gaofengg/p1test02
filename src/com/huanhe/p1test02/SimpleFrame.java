@@ -1,19 +1,25 @@
 package com.huanhe.p1test02;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
 public class SimpleFrame extends JFrame {
-    private JPanel panel1;
-    private JTextField textField1;
-    private JButton connectButton;
-    private JTextArea textArea1;
+    private JPanel mainPanel;
+    private JTextField inputTextField;
+    private JButton addContentButton;
+    private JTextArea showContentTextArea;
     private JLabel inputLabel;
     private JButton cleanButton;
-    private JTextArea textArea2;
+    private JTextArea inputStatusTextArea;
+    private JPanel statusBarPanel;
+    private JPanel inputControlPanel;
     private JProgressBar progressBar1;
+    private JPanel controlPanel;
+    private JScrollPane inputStatusPane;
+    private JScrollPane showContentPane;
 
     SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
@@ -35,57 +41,63 @@ public class SimpleFrame extends JFrame {
         setVisible(true);
 //        pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        textArea1.setEditable(false);
-        textArea1.setFocusable(false); //设置禁止该组件获取焦点
+        showContentTextArea.setEditable(false);
+        showContentTextArea.setFocusable(false); //设置禁止该组件获取焦点
+        inputStatusTextArea.setFocusable(false);
 
-        panel1.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置Jpanel与window的边框间距
+//        panel1.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置Jpanel与window的边框间距
 
-        add(panel1);
+        add(mainPanel);
 
-        connectButton.setToolTipText("This is Button.");
+        addContentButton.setToolTipText("This is Button.");
+
+        inputStatusTextArea.setText("尚未输入任何内容。");
 
         //按钮功能
-        connectButton.addActionListener(actionEvent -> {
-
-            String inputText = textField1.getText().trim();
-            if (!(textField1.getText().equals("")) && !(inputText.isEmpty())) {
-                textArea1.append(inputText + "\n");
+        addContentButton.addActionListener(actionEvent -> {
+            String inputText = inputTextField.getText().trim();
+            if (!(inputTextField.getText().equals("")) && !(inputText.isEmpty())) {
+                showContentTextArea.append(inputText + "\n");
             }
 
-            textField1.setText("");
+            inputTextField.setText("");
 
-            if (textField1.getText().replace(" ", "").isEmpty()) {
-                textArea2.setText("等待输入 ...");
+            if (inputTextField.getText().replace(" ", "").isEmpty()) {
+                inputStatusTextArea.setText("等待输入 ...");
+                inputTextField.setBackground(new Color(69, 73, 74));
+                inputTextField.setText("");
             }
 
 //                textField1.grabFocus(); 尽可能不要用这种方法，它会将在JFrame之间传递焦点
-            textField1.requestFocusInWindow();
+            inputTextField.requestFocusInWindow();
         });
 
         //回车键输入功能：输入框中填写完内容后，回车键可以将内容添加到textArea1中，功能同Add Content
-        textField1.addKeyListener(new KeyAdapter() {
+        inputTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                String inputText = textField1.getText().trim();
+                String inputText = inputTextField.getText().trim();
                 int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_ENTER && !(textField1.getText().equals(""))) {
+                if (keyCode == KeyEvent.VK_ENTER && !(inputTextField.getText().equals(""))) {
                     if (!(inputText.isEmpty())) {
-                        textArea1.append(inputText + "\n");
+                        showContentTextArea.append(inputText + "\n");
                     }
 
-                    textField1.setText("");
+                    inputTextField.setText("");
                 }
-                textField1.requestFocusInWindow();
+                inputTextField.requestFocusInWindow();
             }
         });
 
         //清除按钮，一键清除textArea1中的内容，并将焦点重新定位到textField1输入框
         cleanButton.addActionListener(actionEvent -> {
-            textArea1.setText("");
-            textField1.requestFocusInWindow();
-            if (textField1.getText().replace(" ", "").isEmpty()) {
-                textArea2.setText("等待输入 ...");
+            showContentTextArea.setText("");
+            inputTextField.requestFocusInWindow();
+            if (inputTextField.getText().replace(" ", "").isEmpty()) {
+                inputStatusTextArea.setText("等待输入 ...");
+                inputTextField.setBackground(new Color(69, 73, 74));
             }
+            inputTextField.setText("");
         });
 
         //如果输入框中的内容为全部是空格，则将输入框的背景颜色改为红色
@@ -95,23 +107,34 @@ public class SimpleFrame extends JFrame {
 
 //        new MyJTextFieldListener(textField1);
 
-        textArea2.setText("尚未输入任何内容。");
 
-        textField1.addKeyListener(new KeyAdapter() {
+        inputTextField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!textField1.getText().equals("") && textField1.getText().trim().isEmpty()) {
-                    textField1.setBackground(new Color(119, 58, 58));
-                    textArea2.setText("你输入的似乎都是空格。");
-                } else if (textField1.getText().replace(" ", "").isEmpty()) {
-                    textArea2.setText("等待输入 ...");
-                    textField1.setBackground(new Color(69, 73, 74));
+                if (!inputTextField.getText().equals("") && inputTextField.getText().trim().isEmpty()) {
+                    inputTextField.setBackground(new Color(119, 58, 58));
+                    inputStatusTextArea.setText("你输入的似乎都是空格。");
+                } else if (inputTextField.getText().replace(" ", "").isEmpty()) {
+                    inputStatusTextArea.setText("等待输入 ...");
+                    inputTextField.setBackground(new Color(69, 73, 74));
                 } else {
-                    textArea2.setText("正在输入 ...");
-
+                    inputStatusTextArea.setText("正在输入 ...");
+                    inputTextField.setBackground(new Color(69, 73, 74));
                 }
 
             }
         });
+
+        //状态栏的statusBarPanel显示上边框边线
+        Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70,70));
+        statusBarPanel.setBorder(redBorder);
+
+//        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/connected.png"));
+
+        inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+
+
     }
+
 }

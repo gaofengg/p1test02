@@ -10,10 +10,10 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(new FlatDarculaLaf());
+                new SimpleFrame();
             } catch (UnsupportedLookAndFeelException e) {
                 e.printStackTrace();
             }
-            new SimpleFrame();
         });
     }
 }
