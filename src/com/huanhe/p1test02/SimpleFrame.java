@@ -52,6 +52,8 @@ public class SimpleFrame extends JFrame {
 
         add(mainPanel);
 
+        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
+
         addContentButton.setToolTipText(messagesBundle.getString("button.tooltip01"));
 
         inputStatusTextArea.setText(messagesBundle.getString("no.input"));
@@ -85,6 +87,7 @@ public class SimpleFrame extends JFrame {
                 if (keyCode == KeyEvent.VK_ENTER && !(inputTextField.getText().equals(""))) {
                     if (!(inputText.isEmpty())) {
                         showContentTextArea.append(inputText + "\n");
+                        messageInStatusbar.setText(inputText);
                     }
 
                     inputTextField.setText("");
