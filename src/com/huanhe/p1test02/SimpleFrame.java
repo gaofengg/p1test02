@@ -16,7 +16,6 @@ public class SimpleFrame extends JFrame {
     private JButton cleanButton;
     private JTextArea inputStatusTextArea;
     private JPanel statusBarPanel;
-    private JPanel inputControlPanel;
     private JPanel controlPanel;
     private JScrollPane inputStatusPane;
     private JScrollPane showContentPane;
@@ -132,15 +131,16 @@ public class SimpleFrame extends JFrame {
 
         //状态栏的statusBarPanel显示上边框边线
         Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70,70));
+        Border aroundBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(70, 70,70));
         statusBarPanel.setBorder(redBorder);
 
-        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/unconnect16.png")); //NON-NLS
+        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/connected.png")); //NON-NLS
 
         inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
-
     }
 
     private static ResourceBundle messagesBundle = ResourceBundle.getBundle("com.huanhe.p1test02.SimpleFrame");
+
 }
