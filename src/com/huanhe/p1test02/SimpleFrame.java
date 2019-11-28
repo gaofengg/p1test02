@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ResourceBundle;
 
 public class SimpleFrame extends JFrame {
     private JPanel mainPanel;
@@ -39,10 +40,11 @@ public class SimpleFrame extends JFrame {
 //        setSize(init_width, init_height);
         setMinimumSize(initSize);
         setMaximumSize(screenSize);
-        setTitle("Simple Client");
+        setTitle(messagesBundle.getString("simple.client"));
         setVisible(true);
 //        pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
         showContentTextArea.setEditable(false);
         showContentTextArea.setFocusable(false); //设置禁止该组件获取焦点
         inputStatusTextArea.setFocusable(false);
@@ -51,9 +53,9 @@ public class SimpleFrame extends JFrame {
 
         add(mainPanel);
 
-        addContentButton.setToolTipText("This is Button.");
+        addContentButton.setToolTipText(messagesBundle.getString("button.tooltip01"));
 
-        inputStatusTextArea.setText("尚未输入任何内容。");
+        inputStatusTextArea.setText(messagesBundle.getString("no.input"));
 
         //按钮功能
         addContentButton.addActionListener(actionEvent -> {
@@ -65,10 +67,11 @@ public class SimpleFrame extends JFrame {
             inputTextField.setText("");
 
             if (inputTextField.getText().replace(" ", "").isEmpty()) {
-                inputStatusTextArea.setText("等待输入 ...");
+                inputStatusTextArea.setText(messagesBundle.getString("inputting"));
                 inputTextField.setBackground(new Color(69, 73, 74));
                 inputTextField.setText("");
             }
+            inputStatusTextArea.setText(messagesBundle.getString("waiting.input"));
 
 //                textField1.grabFocus(); 尽可能不要用这种方法，它会将在JFrame之间传递焦点
             inputTextField.requestFocusInWindow();
@@ -96,10 +99,10 @@ public class SimpleFrame extends JFrame {
             showContentTextArea.setText("");
             inputTextField.requestFocusInWindow();
             if (inputTextField.getText().replace(" ", "").isEmpty()) {
-                inputStatusTextArea.setText("等待输入 ...");
                 inputTextField.setBackground(new Color(69, 73, 74));
             }
             inputTextField.setText("");
+            inputStatusTextArea.setText(messagesBundle.getString("waiting.input"));
         });
 
         //如果输入框中的内容为全部是空格，则将输入框的背景颜色改为红色
@@ -115,12 +118,12 @@ public class SimpleFrame extends JFrame {
             public void keyReleased(KeyEvent e) {
                 if (!inputTextField.getText().equals("") && inputTextField.getText().trim().isEmpty()) {
                     inputTextField.setBackground(new Color(119, 58, 58));
-                    inputStatusTextArea.setText("你输入的似乎都是空格。");
+                    inputStatusTextArea.setText(messagesBundle.getString("error.all.space"));
                 } else if (inputTextField.getText().replace(" ", "").isEmpty()) {
-                    inputStatusTextArea.setText("等待输入 ...");
+                    inputStatusTextArea.setText(messagesBundle.getString("waiting.input"));
                     inputTextField.setBackground(new Color(69, 73, 74));
                 } else {
-                    inputStatusTextArea.setText("正在输入 ...");
+                    inputStatusTextArea.setText(messagesBundle.getString("inputting"));
                     inputTextField.setBackground(new Color(69, 73, 74));
                 }
 
@@ -131,7 +134,7 @@ public class SimpleFrame extends JFrame {
         Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70,70));
         statusBarPanel.setBorder(redBorder);
 
-        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/unconnect16.png"));
+        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/unconnect16.png")); //NON-NLS
 
         inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -139,4 +142,5 @@ public class SimpleFrame extends JFrame {
 
     }
 
+    private static ResourceBundle messagesBundle = ResourceBundle.getBundle("com.huanhe.p1test02.SimpleFrame");
 }
