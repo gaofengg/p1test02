@@ -19,7 +19,7 @@ public class SimpleFrame extends JFrame {
     private JPanel controlPanel;
     private JScrollPane inputStatusPane;
     private JScrollPane showContentPane;
-    private JLabel connectStatusLabel;
+    private JLabel connectStatusIconLabel;
     private JLabel messageInStatusbar;
     private JProgressBar progressBarInStatusbar;
 
@@ -52,7 +52,7 @@ public class SimpleFrame extends JFrame {
 
         add(mainPanel);
 
-        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
+//        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
 
         addContentButton.setToolTipText(messagesBundle.getString("button.tooltip01"));
 
@@ -134,10 +134,10 @@ public class SimpleFrame extends JFrame {
 
         //状态栏的statusBarPanel显示上边框边线
         Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70,70));
-        Border aroundBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(70, 70,70));
         statusBarPanel.setBorder(redBorder);
 
-        connectStatusLabel.setIcon(new ImageIcon("./Image/Icon/connected.png")); //NON-NLS
+//        connectStatusIconLabel.setIcon(new ImageIcon("./Image/Icon/connected.png")); //NON-NLS
+//        已经在form文件中加入了icon
 
         inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
