@@ -22,6 +22,7 @@ public class SimpleFrame extends JFrame {
     private JLabel connectStatusIconLabel;
     private JLabel messageInStatusbar;
     private JProgressBar progressBarInStatusbar;
+    private JLabel messagesMoreIconLabel;
 
     SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
@@ -48,13 +49,14 @@ public class SimpleFrame extends JFrame {
         showContentTextArea.setFocusable(false); //设置禁止该组件获取焦点
         inputStatusTextArea.setFocusable(false);
 
-//        panel1.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置Jpanel与window的边框间距
+
+//        panel1.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置Jpanel与window的边框间距 （已从form文件中设置）
 
         add(mainPanel);
 
-//        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
+        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
 
-        addContentButton.setToolTipText(messagesBundle.getString("button.tooltip01"));
+//        addContentButton.setToolTipText(messagesBundle.getString("button.tooltip01")); //已在.form文件中定义
 
         inputStatusTextArea.setText(messagesBundle.getString("no.input"));
 
@@ -106,14 +108,6 @@ public class SimpleFrame extends JFrame {
             inputTextField.setText("");
             inputStatusTextArea.setText(messagesBundle.getString("waiting.input"));
         });
-
-        //如果输入框中的内容为全部是空格，则将输入框的背景颜色改为红色
-//        if (new PassWordVerifier().verify(textField1) && !(textField1.getText().equals(""))) {
-//            textField1.setBackground(Color.red);
-//        }
-
-//        new MyJTextFieldListener(textField1);
-
 
         inputTextField.addKeyListener(new KeyAdapter() {
             @Override
