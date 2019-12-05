@@ -53,11 +53,13 @@
         </children>
       </grid>
       <grid id="6c06a" binding="statusBarPanel" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="1" left="5" bottom="1" right="10"/>
+        <margin top="0" left="5" bottom="0" right="5"/>
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
         <border type="none" title-position="2"/>
         <children>
           <component id="2fe0e" class="javax.swing.JLabel" binding="messageInStatusbar">
@@ -94,28 +96,61 @@
               <stringPainted value="false"/>
             </properties>
           </component>
-          <component id="96b23" class="javax.swing.JLabel" binding="connectStatusIconLabel">
+          <toolbar id="3b9a7" binding="toolBarInStatusBarRight">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
             </constraints>
             <properties>
+              <alignmentX value="0.5"/>
               <alignmentY value="0.5"/>
-              <enabled value="true"/>
-              <icon value="nolicense.png"/>
-              <labelFor value="727dd"/>
-              <text value=""/>
+              <borderPainted value="false"/>
+              <floatable value="false"/>
             </properties>
-          </component>
-          <component id="8aca2" class="javax.swing.JLabel" binding="messagesMoreIconLabel">
+            <border type="none"/>
+            <children>
+              <component id="be9a3" class="javax.swing.JButton" binding="connectStatusButton">
+                <constraints/>
+                <properties>
+                  <alignmentY value="1.0"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="true"/>
+                  <horizontalTextPosition value="11"/>
+                  <icon value="nolicense.png"/>
+                  <inheritsPopupMenu value="false"/>
+                  <maximumSize width="30" height="30"/>
+                  <rolloverEnabled value="true"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </toolbar>
+          <toolbar id="45480" binding="toolBarInStatusBarLeft">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
             </constraints>
             <properties>
-              <icon value="messagesmore.png"/>
-              <labelFor value="727dd"/>
-              <text value=""/>
+              <borderPainted value="false"/>
+              <floatable value="false"/>
             </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="1360d" class="javax.swing.JButton" binding="messagesMoreButton">
+                <constraints/>
+                <properties>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="true"/>
+                  <horizontalAlignment value="0"/>
+                  <icon value="messagesmore.png"/>
+                  <iconTextGap value="4"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </toolbar>
         </children>
       </grid>
       <scrollpane id="a293c" binding="inputStatusPane">
@@ -146,13 +181,17 @@
         </constraints>
         <properties>
           <autoscrolls value="false"/>
+          <requestFocusEnabled value="false"/>
         </properties>
         <border type="none"/>
         <children>
           <component id="79c9f" class="javax.swing.JTextArea" binding="showContentTextArea">
             <constraints/>
             <properties>
-              <requestFocusEnabled value="true"/>
+              <editable value="false"/>
+              <lineWrap value="true"/>
+              <requestFocusEnabled value="false"/>
+              <wrapStyleWord value="true"/>
             </properties>
           </component>
         </children>

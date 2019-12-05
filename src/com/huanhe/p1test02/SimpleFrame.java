@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ResourceBundle;
 
+
 public class SimpleFrame extends JFrame {
     private JPanel mainPanel;
     private JTextField inputTextField;
@@ -19,10 +20,12 @@ public class SimpleFrame extends JFrame {
     private JPanel controlPanel;
     private JScrollPane inputStatusPane;
     private JScrollPane showContentPane;
-    private JLabel connectStatusIconLabel;
     private JLabel messageInStatusbar;
     private JProgressBar progressBarInStatusbar;
-    private JLabel messagesMoreIconLabel;
+    private JButton connectStatusButton;
+    private JToolBar toolBarInStatusBarRight;
+    private JButton messagesMoreButton;
+    private JToolBar toolBarInStatusBarLeft;
 
     SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
@@ -54,7 +57,7 @@ public class SimpleFrame extends JFrame {
 
         add(mainPanel);
 
-        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
+//        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
 
 //        addContentButton.setToolTipText(messagesBundle.getString("button.tooltip01")); //已在.form文件中定义
 
@@ -127,7 +130,7 @@ public class SimpleFrame extends JFrame {
         });
 
         //状态栏的statusBarPanel显示上边框边线
-        Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70,70));
+        Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70, 70));
         statusBarPanel.setBorder(redBorder);
 
 //        connectStatusIconLabel.setIcon(new ImageIcon("./Image/Icon/connected.png")); //NON-NLS
@@ -136,6 +139,22 @@ public class SimpleFrame extends JFrame {
         inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
+//        String str = this.showContentTextArea.getText();
+        connectStatusButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ConnectDialog connectDialog = new ConnectDialog();
+                String str = showContentTextArea.getText();
+                System.out.println(str);
+                connectDialog.setMessageContents(str);
+                connectDialog.pack();
+                connectDialog.setLocationRelativeTo(mainPanel);
+                connectDialog.setResizable(false);
+                connectDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                connectDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                connectDialog.setVisible(true);
+            }
+        });
     }
 
     private static ResourceBundle messagesBundle = ResourceBundle.getBundle("com.huanhe.p1test02.SimpleFrame");
