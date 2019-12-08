@@ -24,6 +24,7 @@ public class ConnectDialog extends JDialog {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
         setContentPane(dialogMainPanel);
         setModal(true);
+        setTitle("Connect to IB.");
         getRootPane().setDefaultButton(buttonOK);
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

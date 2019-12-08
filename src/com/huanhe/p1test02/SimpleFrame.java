@@ -56,6 +56,7 @@ public class SimpleFrame extends JFrame {
 //        panel1.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置Jpanel与window的边框间距 （已从form文件中设置）
 
         add(mainPanel);
+//        add(new MessageDetailsFromStatusBarPopUp().getMessageDetailsPopUpPanel());
 
 //        inputTextField.setDocument(new JTextFieldLimit(10)); //限制输入文字的数量
 
@@ -139,13 +140,11 @@ public class SimpleFrame extends JFrame {
         inputStatusPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         showContentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 
-//        String str = this.showContentTextArea.getText();
         connectStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ConnectDialog connectDialog = new ConnectDialog();
                 String str = showContentTextArea.getText();
-                System.out.println(str);
                 connectDialog.setMessageContents(str);
                 connectDialog.pack();
                 connectDialog.setLocationRelativeTo(mainPanel);
@@ -153,6 +152,31 @@ public class SimpleFrame extends JFrame {
                 connectDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 connectDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 connectDialog.setVisible(true);
+            }
+        });
+
+        //获取messageInStatusBar这个JLabel的坐标
+
+
+        // 状态栏的消息label，
+        // 鼠标移动上去后，鼠标显示点击的手型
+        //点击后，在状态栏的上方显示消息详情的tooltip（后改为Pop Up）
+        //指定tooltip（后改为Pop Up）的高度和宽度（1024/3*2），高度自适应或者固定高度，自动纵向滚动。
+        //鼠标离开tooltip（后改为Pop Up），关闭tooltip（后改为Pop Up）。
+
+        messageInStatusbar.addMouseListener(new MouseAdapter() {
+
+            Popup p;
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
+                System.out.println(messageInStatusbarLocationOnScreen.x);
+                if (p != null) p.hide();
+                super.mouseClicked(e);
+                MessageDetailsFromStatusBarPopUp mdfsp = new MessageDetailsFromStatusBarPopUp();
+                final PopupFactory popupFactory = PopupFactory.getSharedInstance();
+                p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
+                p.show();
             }
         });
     }
