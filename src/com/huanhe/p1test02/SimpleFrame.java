@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.EventListener;
 import java.util.ResourceBundle;
 
 
@@ -164,23 +165,33 @@ public class SimpleFrame extends JFrame {
         //指定tooltip（后改为Pop Up）的高度和宽度（1024/3*2），高度自适应或者固定高度，自动纵向滚动。
         //鼠标离开tooltip（后改为Pop Up），关闭tooltip（后改为Pop Up）。
 
+
+        MessageDetailsFromStatusBarPopUp mdfsp = new MessageDetailsFromStatusBarPopUp();
+
         messageInStatusbar.addMouseListener(new MouseAdapter() {
 
             Popup p;
+
             @Override
             public void mouseClicked(MouseEvent e) {
-                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
-                System.out.println(messageInStatusbarLocationOnScreen.x);
-                if (p != null) p.hide();
                 super.mouseClicked(e);
-                MessageDetailsFromStatusBarPopUp mdfsp = new MessageDetailsFromStatusBarPopUp();
+                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
+                if (p != null) p.hide();
+//                MessageDetailsFromStatusBarPopUp mdfsp = new MessageDetailsFromStatusBarPopUp();
                 final PopupFactory popupFactory = PopupFactory.getSharedInstance();
                 p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
                 p.show();
             }
         });
+
     }
 
     private static ResourceBundle messagesBundle = ResourceBundle.getBundle("com.huanhe.p1test02.SimpleFrame");
 
 }
+
+
+
+
+
+
