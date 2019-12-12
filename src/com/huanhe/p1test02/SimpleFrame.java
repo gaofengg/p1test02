@@ -158,9 +158,6 @@ public class SimpleFrame extends JFrame {
             }
         });
 
-        //获取messageInStatusBar这个JLabel的坐标
-
-
         // 状态栏的消息label，
         // 鼠标移动上去后，鼠标显示点击的手型
         //点击后，在状态栏的上方显示消息详情的tooltip（后改为Pop Up）
@@ -182,17 +179,36 @@ public class SimpleFrame extends JFrame {
                 p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
                 p.show();
 
-                tk.addAWTEventListener(new AWTEventListener() {
+                messageInStatusbar.setFocusable(true);
+                messageInStatusbar.requestFocusInWindow();
+                messageInStatusbar.addFocusListener(new FocusAdapter() {
                     @Override
-                    public void eventDispatched(AWTEvent awtEvent) {
-                        if (awtEvent.getID() == MouseEvent.MOUSE_PRESSED) {
-                            p.hide();
-                        }
+                    public void focusLost(FocusEvent e) {
+                        p.hide();
                     }
-                }, AWTEvent.MOUSE_EVENT_MASK);
+                });
+
+                mdfsp.getMessageDetailHideButton().addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        p.hide();
+                    }
+                });
 
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
         });
+
+        // 关于popup 的message窗口的设计结束了。
 
 
     }

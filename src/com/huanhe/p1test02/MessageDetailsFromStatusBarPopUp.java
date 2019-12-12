@@ -1,14 +1,19 @@
 package com.huanhe.p1test02;
 
+import org.w3c.dom.css.RGBColor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class MessageDetailsFromStatusBarPopUp extends Popup {
+public class MessageDetailsFromStatusBarPopUp {
     private JTextArea textDetails;
     private JPanel messageDetailsPopUpPanel;
     private JLabel title;
     private JLabel icon;
+    private JButton messageDetailHideButton;
+    private JToolBar hideButtonToolBar;
+
 
     public JPanel getMessageDetailsPopUpPanel() {
         return messageDetailsPopUpPanel;
@@ -18,8 +23,7 @@ public class MessageDetailsFromStatusBarPopUp extends Popup {
         return messageDetailsPopUpPanel.getWidth();
     }
 
-    public MessageDetailsFromStatusBarPopUp() {
-
+    public JButton getMessageDetailHideButton() {
+        return messageDetailHideButton;
     }
-
 }
