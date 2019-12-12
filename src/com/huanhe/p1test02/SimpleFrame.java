@@ -28,6 +28,8 @@ public class SimpleFrame extends JFrame {
     private JButton messagesMoreButton;
     private JToolBar toolBarInStatusBarLeft;
 
+    private MessageDetailsFromStatusBarPopUp mdfsp;
+
     SimpleFrame() throws HeadlessException {
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
         int init_width = 1024;
@@ -165,24 +167,61 @@ public class SimpleFrame extends JFrame {
         //指定tooltip（后改为Pop Up）的高度和宽度（1024/3*2），高度自适应或者固定高度，自动纵向滚动。
         //鼠标离开tooltip（后改为Pop Up），关闭tooltip（后改为Pop Up）。
 
+        mdfsp = new MessageDetailsFromStatusBarPopUp();
 
-        MessageDetailsFromStatusBarPopUp mdfsp = new MessageDetailsFromStatusBarPopUp();
+//        messageInStatusbar.addMouseListener(new MouseAdapter() {
+//
+//            Popup p;
+//
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
+//
+////                msgInStaPopupMenu.show(mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
+//
+//                if (p != null) p.hide();
+//                final PopupFactory popupFactory = PopupFactory.getSharedInstance();
+//                p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
+//                mdfsp.getMessageDetailsPopUpPanel().addHierarchyListener(new HierarchyListener() {
+//                    @Override
+//                    public void hierarchyChanged(HierarchyEvent hierarchyEvent) {
+//                        if (hierarchyEvent.getID() == HierarchyEvent.HIERARCHY_CHANGED && (hierarchyEvent.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0) {
+//                            p.hide();
+//                            System.out.println(hierarchyEvent.getID());
+//                            System.out.println(HierarchyEvent.HIERARCHY_CHANGED + "===============");
+//                            System.out.println(hierarchyEvent.getChangeFlags());
+//                            System.out.println(HierarchyEvent.SHOWING_CHANGED);
+//                        }
+//                    }
+//                });
+//                p.show();
+//            }
 
         messageInStatusbar.addMouseListener(new MouseAdapter() {
-
             Popup p;
+
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
                 Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
+
                 if (p != null) p.hide();
-//                MessageDetailsFromStatusBarPopUp mdfsp = new MessageDetailsFromStatusBarPopUp();
                 final PopupFactory popupFactory = PopupFactory.getSharedInstance();
                 p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
                 p.show();
+
+                tk.addAWTEventListener(new AWTEventListener() {
+                    @Override
+                    public void eventDispatched(AWTEvent awtEvent) {
+                       if (awtEvent.getID() == MouseEvent.MOUSE_PRESSED) {
+                           p.hide();
+                       }
+                    }
+                }, AWTEvent.MOUSE_EVENT_MASK);
+
             }
         });
+
 
     }
 
