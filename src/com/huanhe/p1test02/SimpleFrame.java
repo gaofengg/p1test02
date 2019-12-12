@@ -169,42 +169,14 @@ public class SimpleFrame extends JFrame {
 
         mdfsp = new MessageDetailsFromStatusBarPopUp();
 
-//        messageInStatusbar.addMouseListener(new MouseAdapter() {
-//
-//            Popup p;
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
-//
-////                msgInStaPopupMenu.show(mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
-//
-//                if (p != null) p.hide();
-//                final PopupFactory popupFactory = PopupFactory.getSharedInstance();
-//                p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
-//                mdfsp.getMessageDetailsPopUpPanel().addHierarchyListener(new HierarchyListener() {
-//                    @Override
-//                    public void hierarchyChanged(HierarchyEvent hierarchyEvent) {
-//                        if (hierarchyEvent.getID() == HierarchyEvent.HIERARCHY_CHANGED && (hierarchyEvent.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0) {
-//                            p.hide();
-//                            System.out.println(hierarchyEvent.getID());
-//                            System.out.println(HierarchyEvent.HIERARCHY_CHANGED + "===============");
-//                            System.out.println(hierarchyEvent.getChangeFlags());
-//                            System.out.println(HierarchyEvent.SHOWING_CHANGED);
-//                        }
-//                    }
-//                });
-//                p.show();
-//            }
-
         messageInStatusbar.addMouseListener(new MouseAdapter() {
-            Popup p;
 
+            Popup p;
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
 
+                Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
                 if (p != null) p.hide();
                 final PopupFactory popupFactory = PopupFactory.getSharedInstance();
                 p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
@@ -213,9 +185,9 @@ public class SimpleFrame extends JFrame {
                 tk.addAWTEventListener(new AWTEventListener() {
                     @Override
                     public void eventDispatched(AWTEvent awtEvent) {
-                       if (awtEvent.getID() == MouseEvent.MOUSE_PRESSED) {
-                           p.hide();
-                       }
+                        if (awtEvent.getID() == MouseEvent.MOUSE_PRESSED) {
+                            p.hide();
+                        }
                     }
                 }, AWTEvent.MOUSE_EVENT_MASK);
 
