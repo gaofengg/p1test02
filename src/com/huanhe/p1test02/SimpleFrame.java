@@ -173,6 +173,8 @@ public class SimpleFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
+                mdfsp.setTextDetails(messageInStatusbar.getText());
+
                 Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
                 if (p != null) p.hide();
                 final PopupFactory popupFactory = PopupFactory.getSharedInstance();
@@ -192,6 +194,7 @@ public class SimpleFrame extends JFrame {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         p.hide();
+                        messageInStatusbar.setFocusable(false);
                     }
                 });
 

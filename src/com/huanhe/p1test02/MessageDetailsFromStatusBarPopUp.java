@@ -13,7 +13,7 @@ public class MessageDetailsFromStatusBarPopUp {
     private JLabel icon;
     private JButton messageDetailHideButton;
     private JToolBar hideButtonToolBar;
-
+    private JScrollPane messageDetailScrollPane;
 
     public JPanel getMessageDetailsPopUpPanel() {
         return messageDetailsPopUpPanel;
@@ -21,6 +21,10 @@ public class MessageDetailsFromStatusBarPopUp {
 
     public int getMainPanelWidth() {
         return messageDetailsPopUpPanel.getWidth();
+    }
+
+    public void setTextDetails(String str) {
+        textDetails.setText(str);
     }
 
     public JButton getMessageDetailHideButton() {
