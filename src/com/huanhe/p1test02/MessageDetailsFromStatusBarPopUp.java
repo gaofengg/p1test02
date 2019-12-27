@@ -30,4 +30,8 @@ public class MessageDetailsFromStatusBarPopUp {
     public JButton getMessageDetailHideButton() {
         return messageDetailHideButton;
     }
+
+    public JTextArea getTextDetails() {
+        return textDetails;
+    }
 }

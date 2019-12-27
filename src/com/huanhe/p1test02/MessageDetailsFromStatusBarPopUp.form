@@ -6,9 +6,12 @@
       <xy x="20" y="20" width="640" height="400"/>
     </constraints>
     <properties>
+      <background color="-12828863"/>
       <preferredSize width="460" height="200"/>
     </properties>
-    <border type="none"/>
+    <border type="etched">
+      <color color="-4473925"/>
+    </border>
     <children>
       <component id="a5ee5" class="javax.swing.JLabel" binding="title">
         <constraints>
@@ -61,6 +64,9 @@
             <constraints/>
             <properties>
               <autoscrolls value="false"/>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <focusTraversalPolicyProvider value="true"/>
               <lineWrap value="true"/>
               <wrapStyleWord value="true"/>
             </properties>

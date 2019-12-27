@@ -181,9 +181,10 @@ public class SimpleFrame extends JFrame {
                 p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
                 p.show();
 
-                messageInStatusbar.setFocusable(true);
-                messageInStatusbar.requestFocusInWindow();
-                messageInStatusbar.addFocusListener(new FocusAdapter() {
+// 将焦点放到mdfs的TextDetails组件上。
+                mdfsp.getTextDetails().requestFocusInWindow();
+
+                mdfsp.getTextDetails().addFocusListener(new FocusAdapter() {
                     @Override
                     public void focusLost(FocusEvent e) {
                         p.hide();
@@ -194,7 +195,6 @@ public class SimpleFrame extends JFrame {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         p.hide();
-                        messageInStatusbar.setFocusable(false);
                     }
                 });
 

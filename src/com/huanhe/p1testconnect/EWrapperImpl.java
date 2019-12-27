@@ -289,7 +289,8 @@ public class EWrapperImpl implements EWrapper {
 
     @Override
     public void connectAck() {
-        System.out.println("Success");
+        System.out.println("连接成功！");
+
     }
 
     @Override
