@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="009fbb59-ad2a-4b3a-a3f4-fd5bd46649e4" name="Default Changelist" comment="" />
+    <list default="true" id="009fbb59-ad2a-4b3a-a3f4-fd5bd46649e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,6 +224,7 @@
       <workItem from="1577111888832" duration="855000" />
       <workItem from="1577212435256" duration="568000" />
       <workItem from="1577435365694" duration="6172000" />
+      <workItem from="1577449911475" duration="372000" />
     </task>
     <task id="LOCAL-00001" summary="ignore .gitignore">
       <created>1574357591174</created>
@@ -383,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577441470265</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="About message Detail pop up component design UI is final.">
+      <created>1577450031879</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1577450031879</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,10 +486,10 @@
     </state>
     <state x="849" y="434" key="#com.intellij.uiDesigner.palette.ComponentItemDialog.OneOff/0.0.1920.1080@0.0.1920.1080" timestamp="1575702050857" />
     <state x="394" y="335" key="#com.intellij.uiDesigner.palette.ComponentItemDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1575529849275" />
-    <state x="554" y="142" key="CommitChangelistDialog2" timestamp="1577441469490">
+    <state x="554" y="142" key="CommitChangelistDialog2" timestamp="1577450031196">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="554" y="142" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1577441469490" />
+    <state x="554" y="142" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1577450031196" />
     <state x="403" y="356" key="CreateSnapShotAction.MyDialog" timestamp="1575046629288">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -523,10 +534,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="426" y="157" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1577441627087" />
-    <state x="560" y="280" key="Vcs.Push.Dialog.v2" timestamp="1577441492442">
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2" timestamp="1577450055366">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1577441492442" />
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1577450055366" />
     <state x="612" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1577449912192">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
