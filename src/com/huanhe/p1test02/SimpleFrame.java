@@ -1,5 +1,7 @@
 package com.huanhe.p1test02;
 
+import com.formdev.flatlaf.util.SystemInfo;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -27,10 +29,16 @@ public class SimpleFrame extends JFrame {
     private JToolBar toolBarInStatusBarRight;
     private JButton messagesMoreButton;
     private JToolBar toolBarInStatusBarLeft;
+    private JLabel mainPanelIcon;
+    private JPanel customMainTitleBar;
 
     private MessageDetailsFromStatusBarPopUp mdfsp;
 
     SimpleFrame() throws HeadlessException {
+        if (!SystemInfo.IS_MAC) {
+            SetTitleBar.setJFrameTitleBar(this);
+            customMainTitleBar.setVisible(true);
+        }
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
         int init_width = 1024;
         int init_height = 768;
@@ -134,8 +142,9 @@ public class SimpleFrame extends JFrame {
         });
 
         //状态栏的statusBarPanel显示上边框边线
-        Border redBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70, 70));
-        statusBarPanel.setBorder(redBorder);
+        Border topBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70, 70));
+        Border bottomBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(81, 81, 81));
+        statusBarPanel.setBorder(topBorder);
 
 //        connectStatusIconLabel.setIcon(new ImageIcon("./Image/Icon/connected.png")); //NON-NLS
 //        已经在form文件中加入了icon
@@ -178,7 +187,8 @@ public class SimpleFrame extends JFrame {
                 Point messageInStatusbarLocationOnScreen = messageInStatusbar.getLocationOnScreen();
                 if (p != null) p.hide();
                 final PopupFactory popupFactory = PopupFactory.getSharedInstance();
-                p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(), messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
+                p = popupFactory.getPopup(messageInStatusbar, mdfsp.getMessageDetailsPopUpPanel(),
+                        messageInStatusbarLocationOnScreen.x, messageInStatusbarLocationOnScreen.y - 205);
                 p.show();
 
 // 将焦点放到mdfs的TextDetails组件上。
@@ -213,15 +223,8 @@ public class SimpleFrame extends JFrame {
 
         // 关于popup 的message窗口的设计结束了。
 
-
     }
 
     private static ResourceBundle messagesBundle = ResourceBundle.getBundle("com.huanhe.p1test02.SimpleFrame");
 
 }
-
-
-
-
-
-
