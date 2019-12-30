@@ -1,8 +1,8 @@
 package com.huanhe.p1test02;
 
 import com.formdev.flatlaf.util.SystemInfo;
-
 import javax.swing.*;
+import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -29,35 +29,34 @@ public class SimpleFrame extends JFrame {
     private JToolBar toolBarInStatusBarRight;
     private JButton messagesMoreButton;
     private JToolBar toolBarInStatusBarLeft;
-    private JLabel mainPanelIcon;
     private JPanel customMainTitleBar;
 
     private MessageDetailsFromStatusBarPopUp mdfsp;
 
     SimpleFrame() throws HeadlessException {
-        if (!SystemInfo.IS_MAC) {
-            SetTitleBar.setJFrameTitleBar(this);
-            customMainTitleBar.setVisible(true);
-        }
         this.getRootPane().putClientProperty("jetbrains.awt.windowDarkAppearance", true);
         int init_width = 1024;
         int init_height = 768;
 
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
-        Dimension initSize = new Dimension(init_width, init_height);
+//        Dimension initSize = new Dimension(init_width, init_height);
+        int initSizeWidth = (int) (screenSize.width * 0.9);
+        int initSizeHeight= (int) (screenSize.height * 0.9);
+        Dimension initSize = new Dimension(initSizeWidth, initSizeHeight);
 
-        int locationX = (screenSize.width - init_width) / 2;
-        int locationY = (screenSize.height - init_height) / 2;
+        int locationX = (screenSize.width - initSizeWidth) / 2;
+        int locationY = (screenSize.height - initSizeHeight) / 2;
 
         setLocation(locationX, locationY);
-//        setSize(init_width, init_height);
-        setMinimumSize(initSize);
+        setMinimumSize(new Dimension(1024, 768));
         setMaximumSize(screenSize);
+        setSize(new Dimension(initSize));
         setTitle(messagesBundle.getString("simple.client"));
-        setVisible(true);
+//        setVisible(true);
 //        pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Visual Order");
 
         showContentTextArea.setEditable(false);
         showContentTextArea.setFocusable(false); //设置禁止该组件获取焦点
@@ -144,7 +143,9 @@ public class SimpleFrame extends JFrame {
         //状态栏的statusBarPanel显示上边框边线
         Border topBorder = BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(70, 70, 70));
         Border bottomBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(81, 81, 81));
+        Border topBorder2= BorderFactory.createMatteBorder(1, 0, 0, 0, new Color(81, 81, 81));
         statusBarPanel.setBorder(topBorder);
+        mainPanel.setBorder(topBorder2);
 
 //        connectStatusIconLabel.setIcon(new ImageIcon("./Image/Icon/connected.png")); //NON-NLS
 //        已经在form文件中加入了icon
@@ -222,6 +223,8 @@ public class SimpleFrame extends JFrame {
         });
 
         // 关于popup 的message窗口的设计结束了。
+
+        setVisible(true);
 
     }
 

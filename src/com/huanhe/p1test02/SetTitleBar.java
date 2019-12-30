@@ -1,5 +1,7 @@
 package com.huanhe.p1test02;
 
+import javafx.scene.effect.DropShadow;
+
 import javax.swing.*;
 
 public class SetTitleBar {
